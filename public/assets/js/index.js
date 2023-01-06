@@ -1,3 +1,6 @@
+// const express = require('express');
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 let noteTitle;
 let noteText;
 let saveNoteBtn;
