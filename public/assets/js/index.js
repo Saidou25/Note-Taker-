@@ -1,6 +1,9 @@
-// const express = require('express');
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+
+
+
+// const { response } = require("express");
+
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -33,8 +36,17 @@ const getNotes = () =>
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    },
-  });
+    }
+  })
+.then((res) => res.json)
+.then((data) => {
+  console.log ('successful POST request:', data)
+  return data;
+})
+.catch((err) => {
+  console.error('oops in post request:', error);
+});
+
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -43,7 +55,7 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  })
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
