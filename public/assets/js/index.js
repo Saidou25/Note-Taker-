@@ -32,17 +32,22 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     }
-  });
+  }
+  );
+  // const { title, note } = data;
 
-const saveNote = (note) =>
-
-  fetch('api/notes', {
+  const saveNote = (note) => 
+  fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
-  });
+    body: JSON.stringify(note), 
+  })
+
+  .then(res => res.json())
+    .then(res => res.json);
+  
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -76,7 +81,7 @@ const handleNoteSave = () => {
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
-  });
+  })
 };
 
 // Delete the clicked note
@@ -182,3 +187,5 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+// module.exports = handleNoteSave();
