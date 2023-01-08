@@ -1,9 +1,4 @@
 
-
-
-// const { response } = require("express");
-
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -37,25 +32,17 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     }
-  })
-.then((res) => res.json)
-.then((data) => {
-  console.log ('successful POST request:', data)
-  return data;
-})
-.catch((err) => {
-  console.error('oops in post request:', error);
-});
-
+  });
 
 const saveNote = (note) =>
-  fetch('/api/notes', {
+
+  fetch('api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  })
+  });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -182,14 +169,13 @@ const renderNoteList = async (notes) => {
 
   if (window.location.pathname === '/notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
-  }
-};
-
+  };
+}
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
-  saveNoteBtn.addEventListener('click', handleNoteSave);
+  saveNoteBtn.addEventListener('click', (handleNoteSave));
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
