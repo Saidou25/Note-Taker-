@@ -35,7 +35,6 @@ app.post('/api/notes', (req, res) => {
       id: uuid(),
     };
 
-    
     parsedNotes.push(newNote);
     const noteString = JSON.stringify(parsedNotes, null, 2);
     console.log(noteString);
@@ -45,27 +44,17 @@ app.post('/api/notes', (req, res) => {
     );
   }
 });
-    //   const response = {
-    //     status: 'success',
-    //     body: newNote,
-    //   }
 
-    //   res.status(201).json(response);
-    // } else {
-    //   res.status(500).json('err in posting note');
-    // }
-
- 
 
 app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-});
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'))
+  res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`)
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
 
