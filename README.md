@@ -1,4 +1,7 @@
 # [Note-Taker](https://github.com/Saidou25/Note-Taker-)
+---
+
+[Link to the walkthrough demo video.](https://drive.google.com/file/d/1quX_I1C5X8KvbVWrpW3F8fdx8Cl_JiOj/view)
 
 ## Table of Contents
 
