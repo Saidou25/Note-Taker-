@@ -16,8 +16,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/notes', (req, res) => {
-  res.json(`${req.method} request received to add a note`);
-  console.log(`${req.method} request received to get a note`);
+  const data = fs.readFileSync('./db/db.json', 'utf8');
+  const notes = JSON.parse(data)
+  // res.json(`${req.method} request received to add a note`);
+  res.json(JSON.parse(data));
 });
 
 app.post('/api/notes', (req, res) => {
@@ -27,13 +29,12 @@ app.post('/api/notes', (req, res) => {
   const { title, text } = req.body;
 
 
-  if (title && text) {
+  if (req.body) {
     const newNote = {
       title,
       text,
       id: uuid(),
     };
-
     const readNotes = fs.readFileSync(`./db/db.json`, 'utf8');
     const parsedNotes = JSON.parse(readNotes);
     console.log(parsedNotes);
@@ -44,19 +45,20 @@ app.post('/api/notes', (req, res) => {
     fs.writeFile(`./db/db.json`, noteString, (err) =>
       err ? console.log(err) : console.log(`Note for ${newNote.title} has been written to JSON file`)
     );
-
-
-    const response = {
-      status: 'success',
-      body: newNote,
-    }
-
-    res.status(201).json(response);
-  } else {
-    res.status(500).json('err in posting note');
   }
-
 });
+    //   const response = {
+    //     status: 'success',
+    //     body: newNote,
+    //   }
+
+    //   res.status(201).json(response);
+    // } else {
+    //   res.status(500).json('err in posting note');
+    // }
+
+ 
+
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 });
