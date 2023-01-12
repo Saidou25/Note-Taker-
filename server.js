@@ -17,17 +17,16 @@ app.get('/', (req, res) => {
 
 app.get('/api/notes', (req, res) => {
   const data = fs.readFileSync('./db/db.json', 'utf8');
-  const notes = JSON.parse(data)
-  // res.json(`${req.method} request received to add a note`);
-  res.json(JSON.parse(data));
+  const notes = JSON.parse(data);
+  res.json(notes);
 });
 
 app.post('/api/notes', (req, res) => {
-  console.log(`${req.method} request received to post a note`);
-  console.info(req.body);
+  const readNotes = fs.readFileSync(`./db/db.json`, 'utf8');
+  const parsedNotes = JSON.parse(readNotes);
+  res.json(parsedNotes);
 
   const { title, text } = req.body;
-
 
   if (req.body) {
     const newNote = {
@@ -35,9 +34,8 @@ app.post('/api/notes', (req, res) => {
       text,
       id: uuid(),
     };
-    const readNotes = fs.readFileSync(`./db/db.json`, 'utf8');
-    const parsedNotes = JSON.parse(readNotes);
-    console.log(parsedNotes);
+
+    
     parsedNotes.push(newNote);
     const noteString = JSON.stringify(parsedNotes, null, 2);
     console.log(noteString);
