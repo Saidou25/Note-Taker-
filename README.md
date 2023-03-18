@@ -1,9 +1,11 @@
 # [Note-Taker](https://github.com/Saidou25/Note-Taker-)
 
+This App is deployed thru Heroku please click the following link to view: [Heroku Note Tracker Application](https://polar-savannah-54631.herokuapp.com/)
+
  ##### (Express.js)
 ---
 
-[Link to the walkthrough demo video.](https://drive.google.com/file/d/1quX_I1C5X8KvbVWrpW3F8fdx8Cl_JiOj/view)
+
 
 ## Table of Contents
 
